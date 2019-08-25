@@ -1,0 +1,57 @@
+= rabbitmq-client image:https://travis-ci.org/bpabdelkader/rabbitmq-client.svg?branch=master["Build Status", link="https://travis-ci.org/bpabdelkader/rabbitmq-client"] image:https://sonarcloud.io/api/project_badges/measure?project=bpabdelkader_rabbitmq-client&metric=alert_status["Quality Gate Status", link="https://sonarcloud.io/dashboard?id=bpabdelkader_rabbitmq-client"] image:https://jitpack.io/v/bpabdelkader/rabbitmq-client.svg["JitPack", link="https://jitpack.io/#bpabdelkader/rabbitmq-client"] 
+
+== Introduction
+==== Application that publishes/consumes Rabbitmq messages using Spring AMQP module
+{nbsp} +
+
+== Usage
+
+=== Compile
+{nbsp} +
+Compile and Install Sender & Consumer modules
+```Ruby
+rabbitmq-client> mvn clean install
+```
+{nbsp} +
+=== Send Messages
+
+==== Queue Configuration
+Rabbitmq Queue configuration is stored in application.properties as follows:
+
+```Ruby
+spring:
+  rabbitmq:
+    host: 127.0.0.1
+    port: "5672"
+    username: guest
+    password: guest
+
+message:
+  exchange: amq.match
+  routingKey: #
+```
+==== Run
+```Ruby
+rabbitmq-client>mvn spring-boot:run -pl sender
+```
+
+Rabbit messages could be sent through the link link http://localhost:8080/send?message="hi"
+{nbsp} +
+=== Consume Messages
+
+==== Queues Configuration
+```Ruby
+queue:
+  name: queue.demo,queue.demo2 # Multiple Queues should be declared on one line, separated by comma
+```
+
+==== Run
+
+```Ruby
+rabbitmq-client>mvn spring-boot:run -pl consumer
+```
+
+The number of consumed messages are shown on http://localhost:8080/
+
+== License
+Released under the [LGPL License](https://www.gnu.org/licenses/lgpl-3.0.fr.html).
