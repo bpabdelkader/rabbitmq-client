@@ -13,7 +13,8 @@ Compile and Install Sender & Consumer modules
 rabbitmq-client> mvn clean install
 ```
 {nbsp} +
-=== Send Messages
+
+=== Sender Module
 
 ==== Queue Configuration
 Rabbitmq Queue configuration is stored in application.properties as follows:
@@ -35,9 +36,10 @@ message:
 rabbitmq-client>mvn spring-boot:run -pl sender
 ```
 
-Rabbit messages could be sent through the link link http://localhost:8080/send?message="hi"
+Messages could be sent by accessing the link: http://localhost:8080/send?message="hi"
 {nbsp} +
-=== Consume Messages
+
+=== Consumer Module
 
 ==== Queues Configuration
 ```Ruby
