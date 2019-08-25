@@ -5,9 +5,7 @@
 {nbsp} +
 
 == Usage
-
 === Compile
-{nbsp} +
 Compile and Install Sender & Consumer modules
 ```Ruby
 rabbitmq-client> mvn clean install
@@ -15,10 +13,8 @@ rabbitmq-client> mvn clean install
 {nbsp} +
 
 === Sender Module
-
 ==== Queue Configuration
 Rabbitmq Queue configuration is stored in application.properties as follows:
-
 ```Ruby
 spring:
   rabbitmq:
@@ -35,25 +31,23 @@ message:
 ```Ruby
 rabbitmq-client>mvn spring-boot:run -pl sender
 ```
-
 Messages could be sent by accessing the link: http://localhost:8080/send?message="hi"
+{nbsp} +
 {nbsp} +
 
 === Consumer Module
-
 ==== Queues Configuration
 ```Ruby
 queue:
   name: queue.demo,queue.demo2 # Multiple Queues should be declared on one line, separated by comma
 ```
-
 ==== Run
-
 ```Ruby
 rabbitmq-client>mvn spring-boot:run -pl consumer
 ```
-
 The number of consumed messages are shown on http://localhost:8080/
+{nbsp} +
+{nbsp} +
 
 == License
 Released under the [LGPL License](https://www.gnu.org/licenses/lgpl-3.0.fr.html).
