@@ -5,17 +5,17 @@
 {nbsp} +
 
 == Usage
-=== Compile
+==== Compile
 Compile and Install Sender & Consumer modules
-```Ruby
+```scala
 rabbitmq-client> mvn clean install
 ```
 {nbsp} +
 
-=== Sender Module
-==== Queue Configuration
+==== Sender Module
+===== Queue Configuration
 Rabbitmq Queue configuration is stored in application.properties as follows:
-```Ruby
+```scala
 spring:
   rabbitmq:
     host: 127.0.0.1
@@ -27,25 +27,28 @@ message:
   exchange: amq.match
   routingKey: #
 ```
-==== Run
-```Ruby
+===== Run
+```scala
 rabbitmq-client>mvn spring-boot:run -pl sender
 ```
 Messages could be sent by accessing the link: http://localhost:8080/send?message="hi"
+image:https://i.postimg.cc/DZgfPMCD/Sender.png[]
 {nbsp} +
 {nbsp} +
 
-=== Consumer Module
-==== Queues Configuration
-```Ruby
+==== Consumer Module
+===== Queues Configuration
+```scala
 queue:
   name: queue.demo,queue.demo2 # Multiple Queues should be declared on one line, separated by comma
 ```
-==== Run
-```Ruby
+===== Run
+```scala
 rabbitmq-client>mvn spring-boot:run -pl consumer
 ```
 The number of consumed messages are shown on http://localhost:8080/
+image:https://i.postimg.cc/66kR2JN5/Consumer.png[]
+
 {nbsp} +
 {nbsp} +
 
