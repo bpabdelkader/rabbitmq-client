@@ -34,7 +34,6 @@ rabbitmq-client>mvn spring-boot:run -pl sender
 Messages could be sent by accessing the link: http://localhost:8080/send?message="hi"
 image:https://i.postimg.cc/DZgfPMCD/Sender.png[]
 {nbsp} +
-{nbsp} +
 
 ==== Consumer Module
 ===== Queues Configuration
@@ -49,7 +48,6 @@ rabbitmq-client>mvn spring-boot:run -pl consumer
 The number of consumed messages are shown on http://localhost:8080/
 image:https://i.postimg.cc/RVC6ycKK/Consumer.png[]
 
-{nbsp} +
 {nbsp} +
 
 == License
