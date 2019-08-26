@@ -10,8 +10,6 @@ Compile and Install Sender & Consumer modules
 ```scala
 rabbitmq-client> mvn clean install
 ```
-{nbsp} +
-
 ==== Sender Module
 ===== Queue Configuration
 Rabbitmq Queue configuration is stored in application.properties as follows:
@@ -47,7 +45,6 @@ rabbitmq-client>mvn spring-boot:run -pl consumer
 ```
 The number of consumed messages are shown on http://localhost:8080/
 image:https://i.postimg.cc/RVC6ycKK/Consumer.png[]
-
 {nbsp} +
 
 == License
