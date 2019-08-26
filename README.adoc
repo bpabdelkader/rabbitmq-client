@@ -47,7 +47,7 @@ queue:
 rabbitmq-client>mvn spring-boot:run -pl consumer
 ```
 The number of consumed messages are shown on http://localhost:8080/
-image:https://i.postimg.cc/66kR2JN5/Consumer.png[]
+image:https://i.postimg.cc/RVC6ycKK/Consumer.png[]
 
 {nbsp} +
 {nbsp} +
