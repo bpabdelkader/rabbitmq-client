@@ -1,9 +1,0 @@
-spring:
-  rabbitmq:
-    host: 127.0.0.1
-    port: "5672"
-    username: guest
-    password: guest
-
-queue:
-  name: queue.demo,queue.demo2 # Multiple Queues should be declared on one line, separated by comma

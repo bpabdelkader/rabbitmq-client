@@ -1,51 +1,69 @@
-= rabbitmq-client image:https://travis-ci.org/bpabdelkader/rabbitmq-client.svg?branch=master["Build Status", link="https://travis-ci.org/bpabdelkader/rabbitmq-client"] image:https://sonarcloud.io/api/project_badges/measure?project=bpabdelkader_rabbitmq-client&metric=alert_status["Quality Gate Status", link="https://sonarcloud.io/dashboard?id=bpabdelkader_rabbitmq-client"] image:https://jitpack.io/v/bpabdelkader/rabbitmq-client.svg["JitPack", link="https://jitpack.io/#bpabdelkader/rabbitmq-client"] 
+= RabbitMQ Client Web Application image:https://travis-ci.org/bpabdelkader/rabbitmq-client.svg?branch=master["Build Status", link="https://travis-ci.org/bpabdelkader/rabbitmq-client"] image:https://sonarcloud.io/api/project_badges/measure?project=bpabdelkader_rabbitmq-client&metric=alert_status["Quality Gate Status", link="https://sonarcloud.io/dashboard?id=bpabdelkader_rabbitmq-client"] image:https://jitpack.io/v/bpabdelkader/rabbitmq-client.svg["JitPack", link="https://jitpack.io/#bpabdelkader/rabbitmq-client"]
 
-== Introduction
-==== Application that publishes/consumes Rabbitmq messages using Spring AMQP module
-{nbsp} +
+## Running the App locally
+A https://spring.io/guides/gs/spring-boot[Spring Boot] application built using Maven to Send/Consume RabbitMQ messages. You can build a jar file and run it from the command line:
 
-== Usage
-==== Compile
-Compile and Install Sender & Consumer modules
-```scala
-rabbitmq-client> mvn clean install
 ```
-==== Sender Module
-===== Queue Configuration
-Rabbitmq Queue configuration is stored in application.properties as follows:
-```scala
+git clone https://github.com/bpabdelkader/rabbitmq-client.git
+cd rabbitmq-client
+mvn clean package
+java -jar target/rabbitmq-client-2.0.0.jar
+```
+You can then access UI here: http://localhost:8080/
+
+image:https://i.postimg.cc/hvDYPY0H/screenshot.png[]
+
+Or you can run it from Maven directly using the Spring Boot Maven plugin. If you do this it will pick up changes that you make in the project immediately (changes to Java source files require a compile as well - most people use an IDE for this):
+
+```
+mvn spring-boot:run
+```
+
+## Configuration
+Queue configuration(Concurrency/Batch mode/Acknowledge Mode) is stored in application.yml:
+```yml
 spring:
   rabbitmq:
     host: 127.0.0.1
     port: "5672"
     username: guest
     password: guest
+    consumer:
+      listener:
+        concurrency: 16
+        max-concurrency: 32
+        batchEnabled: true
+        batchSize: 40
+        acknowledgeMode: AUTO # NONE, MANUAL, AUTO
+      queues: queue.demo,queue.demo2 # Multiple Queues should be declared on one line, separated by comma
+    sender:
+      exchange: amq.match
+      routingKey: #
+```
 
-message:
-  exchange: amq.match
-  routingKey: #
-```
-===== Run
-```scala
-rabbitmq-client>mvn spring-boot:run -pl sender
-```
-Messages could be sent by accessing the link: http://localhost:8080/send?message="hi"
-image:https://i.postimg.cc/DZgfPMCD/Sender.png[]
-{nbsp} +
+## Working with RabbitMQ Client in IDE
 
-==== Consumer Module
-===== Queues Configuration
-```scala
-queue:
-  name: queue.demo,queue.demo2 # Multiple Queues should be declared on one line, separated by comma
-```
-===== Run
-```scala
-rabbitmq-client>mvn spring-boot:run -pl consumer
-```
-The number of consumed messages are shown on http://localhost:8080/
-image:https://i.postimg.cc/RVC6ycKK/Consumer.png[]
-{nbsp} +
+### Prerequisites
+The following items should be installed in your system:
 
-== License
-Released under the [LGPL License](https://www.gnu.org/licenses/lgpl-3.0.fr.html).
+* Java 8 or newer.
+* git command line tool (https://help.github.com/articles/set-up-git)
+* IntelliJ IDEA
+
+### Steps:
+
+1) On the command line
+```
+git clone https://github.com/bpabdelkader/rabbitmq-client.git
+```
+2) Inside IntelliJ IDEA
+
+In the main menu, choose `File -> Open` and select the RabbitMQ Client[pom.xml](pom.xml). Click on the `Open` button.
+
+Run the application by right clicking on the `RabbitMQClient` main class and choosing
+`Run 'RabbitMQClient'`.
+
+3) Navigate to RabbitMQ Client -> http://localhost:8080[http://localhost:8080] in your browser.
+
+## License
+Released under the http://www.methods.co.nz/asciidoc/[LGPL License^]
